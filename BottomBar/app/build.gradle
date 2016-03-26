@@ -42,5 +42,7 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     compile name:'SMSSDK-2.0.2',ext:'aar'
     compile 'com.github.dongjunkun:DropDownMenu:1.0.3'
+    compile 'cz.msebera.android:httpclient:4.3.6'
+    compile files('libs/android-async-http-1.4.9.jar')
 }
 
