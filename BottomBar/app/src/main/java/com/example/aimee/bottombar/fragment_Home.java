@@ -45,8 +45,11 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
     private ViewPager viewPager;
     private String path[];//图片地址
     private List<FeedItem> feedsList;
-
-
+    private Context mContext;
+    public fragment_Home(Context context)
+    {
+        mContext = context;
+    }
     //bar
     private Spinner spinner;
     private List<String> cityList;
@@ -94,7 +97,7 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
             //放点
             dot = new ImageView[path.length];
             for (int i = 0; i < path.length; i++) {
-                ImageView imgview = new ImageView(getContext());
+                ImageView imgview = new ImageView(mContext);
                 imgview.setLayoutParams(new ActionBar.LayoutParams(10, 10));
                 dot[i] = imgview;
                 if (i == 0) {
@@ -114,13 +117,13 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
 
             img = new ArrayList<>();
             for (int i = 0; i < path.length; i++) {
-                ImageView imgview = new ImageView(getContext());
+                ImageView imgview = new ImageView(mContext);
                 imgview.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 img.add(imgview);
                 setPic(imgview, path[i]);//装载图片
             }
 
-            viewPager.setAdapter(new MyAdapter(img, getContext()));
+            viewPager.setAdapter(new MyAdapter(img, mContext));
 
             viewPager.addOnPageChangeListener(fragment_Home.this);
 
@@ -154,7 +157,7 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
                     //此处为处理得到焦点时的情况
                     //跳转到新的界面
                     searchview.clearFocus();
-                    Intent intent = new Intent(getContext(),SearchActivity.class);//跳转到搜索界面
+                    Intent intent = new Intent(mContext,SearchActivity.class);//跳转到搜索界面
                     startActivity(intent);
 
 
@@ -204,7 +207,7 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
                     public void onResponse(Bitmap bitmap) {
                         imgview.setImageBitmap(bitmap);
                     }
-                }, 0, 0, null,
+                }, 0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
                         imgview.setImageResource(R.drawable.mengmeizi);
@@ -220,10 +223,10 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
         //当按下spinner下的按钮时的反应
         switch (position){
             case 0:
-                Toast.makeText(getContext(), "你按了" + cityList.get(0), Toast.LENGTH_LONG);
+                Toast.makeText(mContext, "你按了" + cityList.get(0), Toast.LENGTH_LONG);
                 break;
             case 1:
-                Toast.makeText(getContext(),"你按了"+cityList.get(1),Toast.LENGTH_LONG);
+                Toast.makeText(mContext,"你按了"+cityList.get(1),Toast.LENGTH_LONG);
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.aimee.bottombar.utils.statics.Factories;
 
 import android.os.Handler;
 
+import com.example.aimee.bottombar.utils.HttpResult;
 import com.example.aimee.bottombar.utils.httpUtils.basics.CommentClient;
 import com.example.aimee.bottombar.utils.httpUtils.basics.KnowledgeClient;
 import com.example.aimee.bottombar.utils.httpUtils.basics.PlanClient;
@@ -14,6 +15,7 @@ import com.example.aimee.bottombar.utils.httpUtils.impls.PlanClientImpl;
 import com.example.aimee.bottombar.utils.httpUtils.impls.TelClientImpl;
 import com.example.aimee.bottombar.utils.httpUtils.impls.TopicClientImpl;
 import com.example.aimee.bottombar.utils.httpUtils.impls.UserClientImpl;
+import com.example.aimee.bottombar.utils.statics.JsonTool;
 
 /**
  * Created by TonyJiang on 2016/3/26.
@@ -41,6 +43,17 @@ public class HttpFactory {
 
     public static UserClient getUserClient(Handler handler){
         return new UserClientImpl(handler);
+    }
+    public static boolean CheckResult(String string){
+        HttpResult httpResult = JsonTool.toBean(string,HttpResult.class);
+        if(httpResult.getResult()!=null){
+            if(httpResult.getStatus()==202){
+                return false;
+            }else if(httpResult.getStatus()==200){
+                return true;
+            }
+        }
+        return true;
     }
 }
 

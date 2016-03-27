@@ -1,16 +1,20 @@
 package com.example.aimee.bottombar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.TransitionInflater;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class SearchActivity extends Activity {
 
@@ -34,6 +38,21 @@ public class SearchActivity extends Activity {
             @Override
             public void onClick(View v) {
                 edit.setText("");//点击叉叉，取消文字
+            }
+        });
+
+        edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEND ||
+                        actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    Intent i = new Intent(SearchActivity.this, list_activity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("key", edit.getText().toString());
+                    i.putExtras(bundle);
+                    startActivity(i);
+                }
+                return false;
             }
         });
     }

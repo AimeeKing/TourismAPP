@@ -2,6 +2,7 @@ package com.example.aimee.bottombar;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.aimee.bottombar.model.User;
+import com.example.aimee.bottombar.utils.HttpResult;
+import com.example.aimee.bottombar.utils.statics.Factories.HttpFactory;
+import com.example.aimee.bottombar.utils.statics.Global;
+import com.example.aimee.bottombar.utils.statics.JsonTool;
+import com.example.aimee.bottombar.utils.statics.ParseMD5;
+import com.loopj.android.http.RequestParams;
 
 /**
  * Created by Aimee on 2016/3/10.
@@ -49,42 +59,81 @@ public class SignFragment extends Fragment {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {//把获取验证码的按钮变成无法按下去，并且倒计时
-
-                    @Override
-                    public void run() {
-                        while(time-- > 0) {
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    btn_submit.setText("已发送(" +time+"s)");
-                                    btn_submit.setEnabled(false);
-                                    btn_submit.setTextColor(getResources().getColor(R.color.white));
-                                    btn_submit.setBackgroundColor(getResources().getColor(R.color.pressed));
-                                }
-
-                            });
-                            try{
-                                Thread.sleep(1000);
-                            }catch (Exception E)
-                            {
-                                //NOTHING
+//                new Thread(new Runnable() {//把获取验证码的按钮变成无法按下去，并且倒计时
+//
+//                    @Override
+//                    public void run() {
+//                        while(time-- > 0) {
+//                            handler.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    btn_submit.setText("已发送(" +time+"s)");
+//                                    btn_submit.setEnabled(false);
+//                                    btn_submit.setTextColor(getResources().getColor(R.color.white));
+//                                    btn_submit.setBackgroundColor(getResources().getColor(R.color.pressed));
+//                                }
+//
+//                            });
+//                            try{
+//                                Thread.sleep(1000);
+//                            }catch (Exception E)
+//                            {
+//                                //NOTHING
+//                            }
+//                        }
+//
+//                        handler.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                time = RETRY_INTERVAL;
+//                                btn_submit.setText("获取验证码");
+//                                btn_submit.setEnabled(true);
+//                                btn_submit.setBackgroundColor(getResources().getColor(R.color.orange));
+//                            }
+//                        });
+//
+//
+//                    }
+//                }).start();
+                phone = edit_phone.getText().toString().equals("")?null:edit_phone.getText().toString();
+                password = edit_password.getText().toString().equals("")?null:edit_password.getText().toString();
+                if(phone!=null&&password!=null){
+//                    System.out.println();
+                    Handler mHandler = new Handler(){
+                        @Override
+                        public void handleMessage(Message msg) {
+                            super.handleMessage(msg);
+                            if(msg.what == Global.SUCCESS){
+                                String result = msg.getData().getString("result");
+                                System.out.println("Result:"+result);
+                                //Toast.makeText(getContext(),"result"+result,Toast.LENGTH_SHORT).show();
+                                User user = JsonTool.toBean(result, User.class);
+                                if(user == null || user.getUserName() == null){
+                                    System.out.println("User"+user);
+                                    HttpResult hResult = JsonTool.toBean(result,HttpResult.class);
+                                    if(hResult.getStatus()==202){
+                                        System.out.println("登录失败");
+                                    }
+                                }else
+                                    System.out.println("UserName:"+user.getUserName()+" Created_time:"+user.getCreated_time());
+                            }else{
+                                System.out.println("登录失败");
                             }
                         }
-
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                time = RETRY_INTERVAL;
-                                btn_submit.setText("获取验证码");
-                                btn_submit.setEnabled(true);
-                                btn_submit.setBackgroundColor(getResources().getColor(R.color.orange));
-                            }
-                        });
-
-
-                    }
-                }).start();
+                    };
+                    //params存放数据
+                    RequestParams params = new RequestParams();
+                    //添加手机号
+                    params.add("userName",phone);
+                    //对密码加密
+                    password = ParseMD5.parseStrToMd5U32(password);
+                    //添加加密后的密码
+                    params.add("password",password);
+                    //设置Handler 然后通过params传数据 向服务器发送数据登录
+                    HttpFactory.getUserClient(mHandler).Login(params);
+                }else{
+                    //Toast.makeText(getContext(),"please enter information",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

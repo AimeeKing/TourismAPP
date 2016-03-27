@@ -1,6 +1,7 @@
 package com.example.aimee.bottombar;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,7 +24,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by Aimee on 2016/3/20.
  */
 public class fragment_My extends Fragment {
-
+    private Context mContext;
+    public fragment_My(Context context){
+        mContext = context;
+    }
     private ListView listview;
     private SimpleAdapter adapter;
     private String item_name[]={"全部订单","卡券","收藏","计划","分享好友","设置"};
@@ -50,7 +54,8 @@ public class fragment_My extends Fragment {
 
     private void initView(View v) {
         listview = (ListView)v.findViewById(R.id.menu);
-        adapter = new SimpleAdapter(getContext(),getData(),
+
+        adapter = new SimpleAdapter(mContext,getData(),
                 R.layout.listview,new String[]{"title","img"},new int[]{R.id.item_name,R.id.img});
         listview.setAdapter(adapter);
 
@@ -59,7 +64,7 @@ public class fragment_My extends Fragment {
             @Override
             public void onClick(View v) {
                 //这里要做的事情,调用库,更改图片，上传图片
-                Toast.makeText(getContext(),"点了改图片",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"点了改图片",Toast.LENGTH_SHORT).show();
             }
         });
 

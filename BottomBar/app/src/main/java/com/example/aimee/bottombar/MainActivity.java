@@ -3,6 +3,7 @@ package com.example.aimee.bottombar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
@@ -26,17 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton mImg[];
     private Fragment[]mTab;
     private TextView[]mText;
-    private int imgWhite[]={R.drawable.shouye,R.drawable.huodong,
-            R.drawable.huati,R.drawable.wode};
-    private int imgBlack[]={R.drawable.zhuyeblack,R.drawable.huodongblack,
-            R.drawable.quanziblack,R.drawable.wodeblack
-    };
-
-
-
-
-
-
+    private int imgWhite[] = { R.drawable.shouye, R.drawable.huodong, R.drawable.huati, R.drawable.wode };
+    private int imgBlack[] = { R.drawable.zhuyeblack, R.drawable.huodongblack, R.drawable.quanziblack, R.drawable.wodeblack };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //动画
         setupWindowAnimations();
-
-
 
         //initBar();
         initView();
@@ -112,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(mTab[i] != null)
                 fmtran.hide(mTab[i]);
             mImg[i].setImageResource(imgWhite[i]);
-            mText[i].setTextColor(getColor(R.color.icon_default));
+            mText[i].setTextColor(Color.GRAY);
         }
         fmtran.commit();
         switch (v.getId())
@@ -139,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (i) {
             case 0:
             if (mTab[0] == null) {
-                mTab[0] = new fragment_Home();
+                mTab[0] = new fragment_Home(MainActivity.this);
                 fmtran.add(R.id.id_content, mTab[0]);
             } else
                 fmtran.show(mTab[0]);
@@ -160,14 +150,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 3:
                 if (mTab[3] == null) {
-                    mTab[3] = new fragment_My();
+                    mTab[3] = new fragment_My(MainActivity.this);
                     fmtran.add(R.id.id_content, mTab[3]);
                 } else
                     fmtran.show(mTab[3]);
                 break;
         }
         mImg[i].setImageResource(imgBlack[i]);
-        mText[i].setTextColor(getColor(R.color.icon_black));
+        mText[i].setTextColor(Color.BLACK);
         fmtran.commit();
     }
 

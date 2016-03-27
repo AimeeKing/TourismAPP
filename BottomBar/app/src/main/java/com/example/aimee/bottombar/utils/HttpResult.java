@@ -1,4 +1,4 @@
-package com.tonyjiang.tourismserverdemo.utils;
+package com.example.aimee.bottombar.utils;
 
 /**
  * Created by TonyJiang on 2016/3/26.
