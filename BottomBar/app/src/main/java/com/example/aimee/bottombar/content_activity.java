@@ -147,14 +147,15 @@ public class content_activity extends Activity implements ObservableScrollViewCa
                 mActionBarSize - mFab.getHeight() / 2,
                 maxFabTranslationY);
         //当他还没到顶部的时候
+
         if(TOOLBAR_IS_STICKY)
         {
-            fabTranslationY = Math.max(0,fabTranslationY);
+            fabTranslationY = Math.max(0+mFab.getWidth()/2,fabTranslationY);
         }
         ViewHelper.setTranslationX(mFab, mOverlayView.getWidth() - mFabMargin - mFab.getWidth());
         ViewHelper.setTranslationY(mFab, fabTranslationY);//移动浮点的位置
 
-        /*
+/*
         if (fabTranslationY < mFlexibleSpaceShowFabOffset) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
                 // On pre-honeycomb, ViewHelper.setTranslationX/Y does not set margin,
@@ -171,12 +172,13 @@ public class content_activity extends Activity implements ObservableScrollViewCa
         }
         */
 
+
         // Show/hide FAB
-        //  if (fabTranslationY < mFlexibleSpaceShowFabOffset) {
-        //hideFab();
-        //   } else {
-        // showFab();
-        //    }
+          if (fabTranslationY < mFlexibleSpaceShowFabOffset) {
+        hideFab();
+           } else {
+         showFab();
+            }
 
 
         //设置toolbar的颜色

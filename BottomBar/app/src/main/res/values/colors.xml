@@ -40,4 +40,6 @@
     <color name="hint">#d4d4d4</color>
     <color name="pressed">#ff9734</color>
     <color name="yellow">#ffbb3c</color>
+    <color name="tab_background_selected">#ffffff</color>
+    <color name="tab_background_unselected">@color/primary</color>
 </resources>

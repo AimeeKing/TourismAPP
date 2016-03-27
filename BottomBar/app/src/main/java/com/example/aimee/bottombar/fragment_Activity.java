@@ -49,6 +49,7 @@ public class fragment_Activity extends Fragment{
     private List<FeedItem> feedsList;
     private Toolbar toolbar;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +64,8 @@ public class fragment_Activity extends Fragment{
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         progressBar.setVisibility(View.VISIBLE);
 
+
+
         toolbar= (Toolbar) v.findViewById(R.id.toolbar);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
@@ -74,7 +77,7 @@ public class fragment_Activity extends Fragment{
         afab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "click", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "click", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -240,7 +243,7 @@ public class fragment_Activity extends Fragment{
                 recyclerView.setAdapter(myrecycleAdapter);
             }
             else
-                Toast.makeText(getContext(), "fail to fetch data", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "fail to fetch data", Toast.LENGTH_LONG).show();
         }
 
         @Override
