@@ -52,6 +52,7 @@
 
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyCustomTabText</item>
+        <item name="colorAccent">@color/white</item>
         <item name="tabSelectedTextColor">@color/primary</item>
         <item name="android:paddingBottom">0dp</item>
         <item name="tabBackground">@drawable/tab_background</item>

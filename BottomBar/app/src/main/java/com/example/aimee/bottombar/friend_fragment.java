@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ms.square.android.expandabletextview.ExpandableTextView;
+
 
 public class friend_fragment extends Fragment {
 
@@ -18,7 +20,12 @@ public class friend_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friend, container, false);
+        View v=inflater.inflate(R.layout.expendtextview, container, false);
+        ExpandableTextView expTv = (ExpandableTextView) v.findViewById(R.id.expand_text_view);
+        //expTv.setText("hello world");
+        expTv.setText(getString(R.string.android5_0_text));
+
+        return v;
     }
 
 
