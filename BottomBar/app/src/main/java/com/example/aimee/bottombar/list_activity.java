@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.aimee.bottombar.UI.ListDropDownAdapter;
 import com.example.aimee.bottombar.recycleview.FeedItem;
 import com.squareup.picasso.Picasso;
+import com.umeng.message.PushAgent;
 import com.yyydjk.library.DropDownMenu;
 
 import org.json.JSONArray;
@@ -66,7 +67,8 @@ public class list_activity extends Activity {
         setContentView(R.layout.list_float);
 
         initView();
-
+        //友盟推送要求，每个activity都要用这个函数，不然会导致广播发送不成功
+        PushAgent.getInstance(getBaseContext()).onAppStart();
 
 
     }

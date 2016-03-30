@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.umeng.message.PushAgent;
+
 public class SearchActivity extends Activity {
 
     private ImageView imageview;
@@ -55,6 +57,9 @@ public class SearchActivity extends Activity {
                 return false;
             }
         });
+
+        //友盟推送要求，每个activity都要用这个函数，不然会导致广播发送不成功
+        PushAgent.getInstance(getBaseContext()).onAppStart();
     }
 
     private void setupWindowAnimations() {

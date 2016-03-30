@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -92,6 +96,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTabact.setOnClickListener(this);
         mTabtopic.setOnClickListener(this);
         mTabmy.setOnClickListener(this);
+
+
+        //消息推送
+        PushAgent mPushAgent=PushAgent.getInstance(getBaseContext());
+        mPushAgent.enable();//打开客户端通知服务，关闭用 disable()
+        //开启推送并设置注册的回调处理
+        mPushAgent.enable(new IUmengRegisterCallback() {
+
+            @Override
+            public void onRegistered(String registrationId) {
+                //onRegistered方法的参数registrationId即是device_token
+                Log.d("device_token", registrationId);
+            }
+        });
     }
     @Override
     public void onClick(View v) {

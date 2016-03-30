@@ -23,14 +23,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/flexible_space_image_height"
                 android:background="@android:color/transparent" />
-
+            <WebView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="330dp" />
+<!--
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +44,9 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                android:text="@string/lipsum" />
+                android:text="@string/lipsum"
+                android:id="@+id/text" />
+                -->
         </LinearLayout>
     </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
 
@@ -78,9 +85,6 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         fab:fab_colorNormal="@color/btn_press_color"
         fab:fab_colorPressed="@color/btn_pressed_color"
         fab:fab_plusIconColor="@color/white"

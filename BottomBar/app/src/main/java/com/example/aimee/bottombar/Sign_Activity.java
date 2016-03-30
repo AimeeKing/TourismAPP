@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 
+import com.umeng.message.PushAgent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,10 @@ public class Sign_Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         tableLayout=(TabLayout)findViewById(R.id.tabs);
         tableLayout.setupWithViewPager(viewPager);
-        tableLayout.setTabTextColors(R.color.unclick,R.color.grey );
+        tableLayout.setTabTextColors(R.color.unclick, R.color.grey);
+
+        //友盟推送要求，每个activity都要用这个函数，不然会导致广播发送不成功
+        PushAgent.getInstance(getBaseContext()).onAppStart();
     }
 
     private void setupWithViewPager(ViewPager viewPager) {

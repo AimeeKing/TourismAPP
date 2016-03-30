@@ -8,6 +8,8 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
+import com.umeng.message.PushAgent;
 
 public class content_activity extends Activity implements ObservableScrollViewCallbacks {
     //这里显示活动具体内容
@@ -40,6 +43,8 @@ public class content_activity extends Activity implements ObservableScrollViewCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_activity);
         super.onCreate(savedInstanceState);
+        //友盟推送要求，每个activity都要用这个函数，不然会导致广播发送不成功
+        PushAgent.getInstance(getBaseContext()).onAppStart();
 
         // setupWindowAnimations();//设置跳转动画
 
@@ -74,23 +79,46 @@ public class content_activity extends Activity implements ObservableScrollViewCa
         ViewHelper.setScaleX(mFab, 1);//设置他的大小吗
         ViewHelper.setScaleY(mFab, 1);
 
+
+
         ScrollUtils.addOnGlobalLayoutListener(mScrollView, new Runnable() {
             @Override
             public void run() {
-                mScrollView.scrollTo(0, mFlexibleSpaceImageHeight - mActionBarSize);
-
-                // If you'd like to start from scrollY == 0, don't write like this:
-                //mScrollView.scrollTo(0, 0);
-                // The initial scrollY is 0, so it won't invoke onScrollChanged().
-                // To do this, use the following:
-                //onScrollChanged(0, false, false);
-
-                // You can also achieve it with the following codes.
-                // This causes scroll change from 1 to 0.
+                // mScrollView.scrollTo(0, mFlexibleSpaceImageHeight - mActionBarSize);
+                onScrollChanged(0,false,false);
+                //如果想让页面从0 开始那么就输入
+                // onScrollChanged(0, false, false);
+                //或者
                 //mScrollView.scrollTo(0, 1);
                 //mScrollView.scrollTo(0, 0);
+                //不能用mScrollView.scrollTo(0, 0); 这样不会引起调用onScrollChanged().
+                //并且必须写在这个函数里面，不然写在外面并没有什么软用
             }
         });
+
+        //设置头图下面的网页
+        WebView webView = (WebView) findViewById(R.id.text);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("http://aimeeking.xicp.net:18358//MyFirstHtml/MyHtml.html");
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                // TODO Auto-generated method stub
+                view.loadUrl(url);// 使用当前WebView处理跳转
+                return true;//true表示此事件在此处被处理，不需要再广播
+            }
+
+            @Override   //转向错误时的处理
+            public void onReceivedError(WebView view, int errorCode,
+                                        String description, String failingUrl) {
+                // TODO Auto-generated method stub
+                Toast.makeText(getBaseContext(), "Oh no! " + description, Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+
+
     }
 
     @Override
@@ -108,13 +136,15 @@ public class content_activity extends Activity implements ObservableScrollViewCa
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+   /*     if (id == R.id.action_settings) {
             return true;
         }
+        */
 
         return super.onOptionsItemSelected(item);
     }
 
+    //实际执行当华东界面时产生的动画的函数
     @Override
     public void onScrollChanged(int scrollY, boolean b, boolean b1) {
         float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
@@ -174,11 +204,11 @@ public class content_activity extends Activity implements ObservableScrollViewCa
 
 
         // Show/hide FAB
-          if (fabTranslationY < mFlexibleSpaceShowFabOffset) {
-        hideFab();
-           } else {
-         showFab();
-            }
+        if (fabTranslationY < mFlexibleSpaceShowFabOffset) {
+            hideFab();
+        } else {
+            showFab();
+        }
 
 
         //设置toolbar的颜色
