@@ -59,4 +59,6 @@
     <string name="title_activity_content_activity">content_activity</string>
     <string name="title_activity_list_activity">list_activity</string>
     <string name="title_activity_sign_">Sign_Activity</string>
+    <string name="title_activity_add_activity">add_activity</string>
+    <string name="submit">发布</string>
 </resources>

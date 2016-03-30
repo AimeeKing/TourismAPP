@@ -1,6 +1,7 @@
 package com.example.aimee.bottombar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,7 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aimee.bottombar.recycleview.FeedItem;
-import com.getbase.floatingactionbutton.AddFloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.squareup.picasso.Picasso;
 
@@ -33,12 +35,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//这个是第三个界面的话题界面
 public class acttopic_Fragment extends Fragment {
     private RecyclerView recyclerView;
     private MyrecycleAdapter myrecycleAdapter;
     private ProgressBar progressBar;
-    private AddFloatingActionButton afab;
+    private FloatingActionsMenu  mfab;
+    private FloatingActionButton afab;
+    private FloatingActionButton tfab;
     private List<FeedItem> feedsList;
 
 
@@ -61,15 +65,38 @@ public class acttopic_Fragment extends Fragment {
 
 
 
-        afab= (AddFloatingActionButton) v.findViewById(R.id.multiple_actions);
+        mfab= (FloatingActionsMenu) v.findViewById(R.id.multiple_actions);
+        mfab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mfab.isExpanded())
+                {
+                    mfab.collapse();
+                }
+                else mfab.expand();
+
+            }
+        });
+        afab = (FloatingActionButton) v.findViewById(R.id.add_activity);
+        tfab = (FloatingActionButton) v.findViewById(R.id.add_topic);
         afab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "click", Toast.LENGTH_LONG).show();
-
+                Intent i=new Intent(getActivity(),add_activity.class);
+                startActivity(i);
             }
         });
 
+
+        tfab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "click", Toast.LENGTH_LONG).show();
+                Intent i=new Intent(getActivity(),add_activity.class);
+                startActivity(i);
+            }
+        });
 
         /*下载数据通过URL*/
         final String url = "http://javatechig.com/?json=get_recent_posts&count=45";

@@ -63,4 +63,10 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="menu_labels_style">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:background">@color/fab_label_background</item>
+    </style>
+
+    <color name="fab_label_background">#00ffffff</color>
 </resources>
