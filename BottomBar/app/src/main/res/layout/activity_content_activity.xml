@@ -30,11 +30,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/flexible_space_image_height"
                 android:background="@android:color/transparent" />
+          <!--  <FrameLayout
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="330dp"
+                ></FrameLayout> -->
             <WebView
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:minHeight="330dp" />
+                -
 <!--
             <TextView
                 android:layout_width="match_parent"
@@ -80,7 +87,7 @@
             android:background="@android:color/transparent" />
     </LinearLayout>
     <!--当距离小于一定程度，他消失-->
-    <com.getbase.floatingactionbutton.AddFloatingActionButton
+    <com.getbase.floatingactionbutton.FloatingActionButton
         android:transitionName="floatbutton_a"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -91,6 +98,8 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
-        />
+        fab:fab_icon="@drawable/moreinfo"
+        >
+        </com.getbase.floatingactionbutton.FloatingActionButton>
 
 </FrameLayout>

@@ -27,7 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.aimee.bottombar.recycleview.FeedItem;
+import com.example.aimee.bottombar.tony.utils.statics.Global;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,18 +38,18 @@ import java.util.List;
 /**
  * Created by Aimee on 2016/3/19.
  */
-public class fragment_Home extends Fragment implements ViewPager.OnPageChangeListener,AdapterView.OnItemClickListener{
+public class fragment_Home extends Fragment implements ViewPager.OnPageChangeListener,AdapterView.OnItemClickListener,View.OnClickListener{
     private LinearLayout linearLayout;//放点的集合
     private List<ImageView> img;//图片集合
     private ImageView dot[];//点集合
     private ViewPager viewPager;
-    private String path[];//图片地址
-    private List<FeedItem> feedsList;
+    private List<String> path;//图片地址
+//    private List<FeedItem> feedsList;
     private Context mContext;
-    public fragment_Home(Context context)
-    {
-        mContext = context;
+    public fragment_Home(){
+        mContext = Global.getmContext();
     }
+
     //bar
     private Spinner spinner;
     private List<String> cityList;
@@ -59,6 +59,16 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
     private Toolbar toolbar;
 
     private LayoutInflater inflater;
+
+
+    private LinearLayout layout;
+
+    private ImageView classout;//班级出游
+    private ImageView childout;//儿童出游
+    private ImageView perform;//演出展览
+    private ImageView outside;//周边出游
+    private ImageView DIY;//diy
+    private ImageView knowledge;//知识库
 
 
     @Override
@@ -76,62 +86,55 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
         return v;
     }
 
-    private void process_json(JSONObject response) {
-        try {
-            JSONArray posts = response.optJSONArray("posts");
-            feedsList = new ArrayList<>();
-            for (int i = 0; i < posts.length(); i++) {
-                JSONObject post = posts.optJSONObject(i);
-                FeedItem item = new FeedItem();
-                item.setTitle(post.optString("title"));
-                item.setThumbnail(post.optString("thumbnail"));
+private void process_json(JSONObject response) {
+    try {
+        path=new ArrayList<>();
+        JSONArray posts = response.optJSONArray("imgs");
+        for (int i = 0; i < posts.length(); i++) {
+            String post = posts.optString(i);
+            System.out.println("imgs:"+post);
+            path.add(post);
 
-                feedsList.add(item);
-
-            }
-            path=new String[feedsList.size()];
-            for (int i = 0; i < feedsList.size(); i++) {
-                path[i] = feedsList.get(i).getThumbnail();
-            }
-
-            //放点
-            dot = new ImageView[path.length];
-            for (int i = 0; i < path.length; i++) {
-                ImageView imgview = new ImageView(mContext);
-                imgview.setLayoutParams(new ActionBar.LayoutParams(10, 10));
-                dot[i] = imgview;
-                if (i == 0) {
-                    //初始化的时候第0张图片被选择
-                    dot[i].setBackgroundResource(R.drawable.login_point);
-                } else {
-                    dot[i].setBackgroundResource(R.drawable.login_point);
-                }
-
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(new ViewGroup.LayoutParams
-                        (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                layoutParams.leftMargin = 5;
-                layoutParams.rightMargin = 5;
-                linearLayout.addView(imgview, layoutParams);
-            }
-
-
-            img = new ArrayList<>();
-            for (int i = 0; i < path.length; i++) {
-                ImageView imgview = new ImageView(mContext);
-                imgview.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                img.add(imgview);
-                setPic(imgview, path[i]);//装载图片
-            }
-
-            viewPager.setAdapter(new MyAdapter(img, mContext));
-
-            viewPager.addOnPageChangeListener(fragment_Home.this);
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-    }
 
+
+        //放点
+        dot = new ImageView[path.size()];
+        for (int i = 0; i < path.size(); i++) {
+            ImageView imgview = new ImageView(mContext);
+            imgview.setLayoutParams(new ActionBar.LayoutParams(10, 10));
+            dot[i] = imgview;
+            if (i == 0) {
+                //初始化的时候第0张图片被选择
+                dot[i].setBackgroundResource(R.drawable.login_point);
+            } else {
+                dot[i].setBackgroundResource(R.drawable.login_point);
+            }
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(new ViewGroup.LayoutParams
+                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            layoutParams.leftMargin = 5;
+            layoutParams.rightMargin = 5;
+            linearLayout.addView(imgview, layoutParams);
+        }
+
+
+        img = new ArrayList<>();
+        for (int i = 0; i < path.size(); i++) {
+            ImageView imgview = new ImageView(mContext);
+            imgview.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            img.add(imgview);
+            setPic(imgview, path.get(i));//装载图片
+        }
+
+        viewPager.setAdapter(new MyAdapter(img, mContext));
+
+        viewPager.addOnPageChangeListener(fragment_Home.this);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
     private void initBar(View v)
     {
         toolbar =(Toolbar)v.findViewById(R.id.toolbar_activity);
@@ -160,8 +163,6 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
                     Intent intent = new Intent(mContext,SearchActivity.class);//跳转到搜索界面
                     startActivity(intent);
 
-
-
                 } else {
                     //失去焦点时的情况
                 }
@@ -172,7 +173,7 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
         linearLayout = (LinearLayout)v. findViewById(R.id.dots);
         viewPager = (ViewPager) v.findViewById(R.id.pager);
 
-        String url = "http://javatechig.com/?json=get_recent_posts&count=4";
+        String url = Global.LocalHost+"servlet/imgs";//";//http://javatechig.com/?json=get_recent_posts&count=4
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.POST, url, new Response.Listener<JSONObject>() {
 
@@ -191,6 +192,29 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
 
         AppControl.getInstance().addToRequestQueue(jsObjRequest);
 
+
+        layout= (LinearLayout) v.findViewById(R.id.buttons);
+        classout = (ImageView)(layout.findViewById(R.id.img_1_1));
+        childout = (ImageView)( layout.findViewById(R.id.img_2_1));
+        perform = (ImageView) (layout.findViewById(R.id.img_3_1));
+        outside = (ImageView) (layout.findViewById(R.id.img_1_2));
+        DIY = (ImageView) (layout.findViewById(R.id.img_2_2));
+        knowledge = (ImageView) (layout.findViewById(R.id.img_3_2));
+
+        classout.setTag("班级出游");
+        childout.setTag("儿童出游");
+        perform.setTag("演出展览");
+        outside.setTag("周边出游");
+        DIY.setTag("手工DIY");
+        knowledge.setTag("知识库");
+
+
+        classout.setOnClickListener(this);
+        childout.setOnClickListener(this);
+        perform.setOnClickListener(this);
+        outside.setOnClickListener(this);
+        DIY.setOnClickListener(this);
+        knowledge.setOnClickListener(this);
     }
 
     private void setPic(final ImageView imgview, String s) {
@@ -227,6 +251,21 @@ public class fragment_Home extends Fragment implements ViewPager.OnPageChangeLis
                 break;
             case 1:
                 Toast.makeText(mContext,"你按了"+cityList.get(1),Toast.LENGTH_LONG);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {//按下按钮
+        if(!v.getTag().equals("知识库")) {
+            Intent i = new Intent(getActivity(), Click_Activity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("key", v.getTag().toString());
+            i.putExtras(bundle);
+            startActivity(i);
+        }
+        else
+        {
+
         }
     }
 

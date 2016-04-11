@@ -1,0 +1,7 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/id_content"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    ></FrameLayout>
+<!--这个界面是按下首页的图标后出现的界面-->

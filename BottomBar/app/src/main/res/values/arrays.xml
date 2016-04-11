@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type">
+        <item>宝宝</item>
+        <item>幼儿</item>
+        <item>小学</item>
+        <item>初中</item>
+    </string-array>
+</resources>

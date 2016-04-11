@@ -8,9 +8,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.widget.Toolbar;
 
 import com.umeng.message.PushAgent;
 
@@ -54,8 +54,8 @@ public class Sign_Activity extends AppCompatActivity {
 
     private void setupWithViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter=new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new SignFragment(),"登录");
-        adapter.addFragment(new LogninFragment(),"注册");
+        adapter.addFragment(new LoginFragment(),"登录");
+        adapter.addFragment(new SignUpFragment(),"注册");
         viewPager.setAdapter(adapter);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -109,4 +109,6 @@ public class Sign_Activity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

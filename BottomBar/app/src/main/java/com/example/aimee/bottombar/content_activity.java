@@ -1,6 +1,8 @@
 package com.example.aimee.bottombar;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,15 +12,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cocosw.bottomsheet.BottomSheet;
+import com.cocosw.bottomsheet.BottomSheetHelper;
+import com.example.aimee.bottombar.tony.po.Activities;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
+import com.squareup.picasso.Picasso;
 import com.umeng.message.PushAgent;
 
 public class content_activity extends Activity implements ObservableScrollViewCallbacks {
@@ -26,7 +33,7 @@ public class content_activity extends Activity implements ObservableScrollViewCa
     private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
     private static final boolean TOOLBAR_IS_STICKY = true;
 
-    private View mImageView;
+    private ImageView mImageView;
     private View mOverlayView;
     private ObservableScrollView mScrollView;
     private TextView mTitleView;
@@ -60,19 +67,62 @@ public class content_activity extends Activity implements ObservableScrollViewCa
         }
         mActionBarSize =getActionBarSize();
 
+        Intent i = getIntent();
+        Bundle bundle=i.getExtras();
+        final Activities activity= (Activities) bundle.getSerializable("activity");
 
-        mImageView = findViewById(R.id.image);//头图
+        mImageView = (ImageView)findViewById(R.id.image);//头图
         mOverlayView = findViewById(R.id.overlay);//覆盖头图的图
         mScrollView = (ObservableScrollView) findViewById(R.id.scroll);//scrollview
         mScrollView.setScrollViewCallbacks(this);
         mTitleView = (TextView) findViewById(R.id.title);
-        mTitleView.setText(getTitle());//标题在图片上
+
+        Picasso.with(getBaseContext()).load(activity.getImage())
+                .error(R.drawable.beautyto)
+                .placeholder(R.drawable.beautyto)
+                .into(mImageView);
+
+        mTitleView.setText(activity.getTitle());//标题在图片上
         setTitle(null);//设置标题为空
+        //设置mFab的内容
+
         mFab = findViewById(R.id.fab);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(content_activity.this, "FAB is clicked", Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(content_activity.this, "FAB is clicked", Toast.LENGTH_SHORT).show();
+                new BottomSheet.Builder(content_activity.this).title("菜单").sheet(R.menu.content_menulist).listener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case R.id.save:
+                                Toast.makeText(getBaseContext(),"收藏啦！",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.share:
+                                BottomSheet sheet;
+                                sheet = getShareActions("分享好友").title("分享好友").limit(R.integer.no_limit).build();
+                                sheet.show();
+                                break;
+
+                            case R.id.good:
+                                //评价
+                                Intent i2 = new Intent(content_activity.this,Comment_activity.class);
+                                Bundle b2 = new Bundle();
+                                b2.putString("activity_id",activity.getActivity_id());
+                                i2.putExtras(b2);
+                                startActivity(i2);
+                                break;
+                            case R.id.buy:
+                                //项目
+                                Intent i1 = new Intent(content_activity.this,content_moreinfo.class);
+                                Bundle b1 = new Bundle();
+                                b1.putString("activity_id",activity.getActivity_id());
+                                i1.putExtras(b1);
+                                startActivity(i1);
+                                break;
+                        }
+                    }
+                }).show();
             }
         });
         mFabMargin = getResources().getDimensionPixelSize(R.dimen.margin_standard);
@@ -119,6 +169,14 @@ public class content_activity extends Activity implements ObservableScrollViewCa
         });
 
 
+    }
+
+    private BottomSheet.Builder getShareActions(String text) {
+        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+
+        return BottomSheetHelper.shareAction(this, shareIntent);
     }
 
     @Override

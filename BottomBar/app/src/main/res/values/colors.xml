@@ -42,4 +42,10 @@
     <color name="yellow">#ffbb3c</color>
     <color name="tab_background_selected">#ffffff</color>
     <color name="tab_background_unselected">@color/primary</color>
+    <color name="item_color">#000000</color>
+    <color name="press">#226b74ff</color>
+
+
+    <color name="gray_de">#666666</color>
+
 </resources>

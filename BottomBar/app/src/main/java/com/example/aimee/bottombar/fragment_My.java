@@ -10,12 +10,14 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aimee.bottombar.LoadPic.PicassoImageLoader;
+import com.example.aimee.bottombar.tony.utils.statics.Global;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -40,6 +42,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by Aimee on 2016/3/20.
  */
 public class fragment_My extends Fragment {
+    private static final int RESULT_SETTING =0001 ;
+    private static final int RESULT_LOGIN = 0002;
     private Context mContext;
     private final int REQUEST_CODE_GALLERY = 1001;
 
@@ -56,9 +60,12 @@ public class fragment_My extends Fragment {
     private TextView textuser;
     private Boolean login=false;
 
-    public fragment_My(Context context){
-        this.mContext = context;
+    public String str;//用在传递名字
+
+    public fragment_My(){
+        this.mContext = Global.mContext;
     }
+
 
 
     @Override
@@ -81,6 +88,24 @@ public class fragment_My extends Fragment {
         adapter = new SimpleAdapter(mContext,getData(),
                 R.layout.listview,new String[]{"title","img"},new int[]{R.id.item_name,R.id.img});
         listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(5==position)//如果按了设置
+                {
+                    Intent i=new Intent();
+                    i.setClass(getActivity(),setting.class);
+                    String username=textuser.getText().toString();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("username",username);
+                    i.putExtras(bundle);
+                    startActivityForResult(i,0);
+                }
+            }
+        });
+
+
 
         mPhotoList = new ArrayList<>();
 
@@ -141,10 +166,18 @@ public class fragment_My extends Fragment {
                     login = false;
                 } else {
 
-                    Intent i = new Intent(getActivity(), Sign_Activity.class);
+                    /*Intent i = new Intent(getActivity(), Sign_Activity.class);
                     startActivity(i);
 
                     textuser.setText("username");
+                    */
+                    Intent i=new Intent();
+                    i.setClass(getActivity(),Sign_Activity.class);
+                    String username=textuser.getText().toString();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("username",username);
+                    i.putExtras(bundle);
+                    startActivityForResult(i,1);
                     login = true;
                 }
             }
@@ -153,6 +186,36 @@ public class fragment_My extends Fragment {
         initFresco();
         initImageLoader(getActivity().getBaseContext());
     }
+
+    //设置回调函数
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        str=null;
+        switch (resultCode)
+        {
+            case RESULT_SETTING:
+                Bundle b=data.getExtras();//b是从setting中传回来的Intent
+                str=b.getString("username");
+                break;
+            case RESULT_LOGIN:
+                b = data.getExtras();
+                str=b.getString("username");
+                break;
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        textuser.setText(str);
+                    }
+                });
+            }
+        }).start();
+    }
+
 
     private Boolean isLogin()//是否登录
     {

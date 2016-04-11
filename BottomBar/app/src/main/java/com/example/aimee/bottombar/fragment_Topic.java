@@ -3,26 +3,20 @@ package com.example.aimee.bottombar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Aimee on 2016/3/20.
  */
 public class fragment_Topic extends Fragment {
     private Toolbar toolbar;
-    private TabLayout tableLayout;
-    private ViewPager viewPager;
+   /* private TabLayout tableLayout;
+    private ViewPager viewPager;*/
     private AppCompatActivity activity;
 
     @Override
@@ -37,14 +31,18 @@ public class fragment_Topic extends Fragment {
         toolbar= (Toolbar) v.findViewById(R.id.toolbar);
         activity=((AppCompatActivity) getActivity());
         activity.setSupportActionBar(toolbar);
-
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
+        FragmentManager fm=((AppCompatActivity) getActivity()).getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.framelayout,new acttopic_Fragment()).commit();
+        /*
         viewPager = (ViewPager)v.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tableLayout =(TabLayout)v.findViewById(R.id.tabs);
-        tableLayout.setupWithViewPager(viewPager);
+        tableLayout.setupWithViewPager(viewPager);*/
         return v;
     }
+    /*
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(activity.getSupportFragmentManager());
         adapter.addFragment(new acttopic_Fragment(), "话题");
@@ -80,6 +78,7 @@ public class fragment_Topic extends Fragment {
             return mFragmentTitleList.get(position);
         }
     }
+    */
 
     @Override
     public void onStart() {

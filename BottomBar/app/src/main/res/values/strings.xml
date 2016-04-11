@@ -11,6 +11,7 @@
     <string name="my">my</string>
     <string name="topic">topic</string>
     <string name="query">输入活动，地点</string>
+    <string name="about">定制活动是指，您提出新的活动方案，网友为您点赞，点赞超过一定数额后，我们帮你联系相应的景点，推出低于市场价的团购优惠，点赞网友皆可享受此优惠（活动众筹）</string>
 
 
      <string name="lipsum">Lorem ipsum dolor sit amet, ut duis lorem provident sed felis blandit,
@@ -59,6 +60,23 @@
     <string name="title_activity_content_activity">content_activity</string>
     <string name="title_activity_list_activity">list_activity</string>
     <string name="title_activity_sign_">Sign_Activity</string>
-    <string name="title_activity_add_activity">add_activity</string>
+    <string name="title_activity_add_activity">增加一个话题</string>
     <string name="submit">发布</string>
+    <string name="title_activity_add_actplan">定制活动</string>
+    <string name="title_activity_click_">Click_Activity</string>
+
+       <string name="xiaomi_attention">
+        <![CDATA[小米系统用户请进入系统应用:安全中心->授权管理->自启动应用管理 后允许『贝壳单词』自启动，否则无法自启动]]></string>
+    <string name="toast_close">当前为关闭。\n开启后会在你使用其他 APP
+        的时，定时弹出可爱的小『吐司』，不会妨碍你的触摸和点击事件，打扰性非常低，但却能很高效地无压力复习单词。
+    </string>
+    <string name="toast_open">当前为开启。\n开启后会在你使用其他 APP
+        的时，定时弹出可爱的小『吐司』，不会妨碍你的触摸和点击事件，打扰性非常低，但却能很高效地无压力复习单词。
+    </string>
+    <string name="notify_priority">notify_priority</string>
+    <string name="title_activity_setting">设置</string>
+    <string name="context_more">门票</string>
+    <string name="title_activity_content_moreinfo">content_moreinfo</string>
+    <string name="title_activity_comment_activity">Comment_activity</string>
+    <string name="out">out</string>
 </resources>

@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.aimee.bottombar.tony.utils.statics.Global;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 
@@ -33,6 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView[]mText;
     private int imgWhite[] = { R.drawable.shouye, R.drawable.huodong, R.drawable.huati, R.drawable.wode };
     private int imgBlack[] = { R.drawable.zhuyeblack, R.drawable.huodongblack, R.drawable.quanziblack, R.drawable.wodeblack };
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void initView() {
+        if( Global.getmContext()==null)
+            Global.setmContext(MainActivity.this);
+
         mTab = new Fragment[4];
         mImg = new ImageButton[4];
         mText = new TextView[4];
@@ -87,9 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mText[3] = (TextView) findViewById(R.id.id_tab_my_txt);
 
         initFragment(0);
-
-
-
     }
     private void initEvernt() {
         mTabhome.setOnClickListener(this);
@@ -147,7 +152,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (i) {
             case 0:
             if (mTab[0] == null) {
-                mTab[0] = new fragment_Home(MainActivity.this);
+                mTab[0] = new fragment_Home();
+
                 fmtran.add(R.id.id_content, mTab[0]);
             } else
                 fmtran.show(mTab[0]);
@@ -168,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 3:
                 if (mTab[3] == null) {
-                    mTab[3] = new fragment_My(MainActivity.this);
+                    mTab[3] = new fragment_My();
                     fmtran.add(R.id.id_content, mTab[3]);
                 } else
                     fmtran.show(mTab[3]);

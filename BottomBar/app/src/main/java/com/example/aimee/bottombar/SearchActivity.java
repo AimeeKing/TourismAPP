@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.umeng.message.PushAgent;
-
+//这个是搜索的界面
 public class SearchActivity extends Activity {
 
     private ImageView imageview;
