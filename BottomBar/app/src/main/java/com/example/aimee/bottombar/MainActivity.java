@@ -9,20 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.TransitionInflater;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.aimee.bottombar.tony.utils.statics.Global;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.PushAgent;
+import com.example.aimee.bottombar.newServer.utils.statics.Global;
 
-
+//这个界面暂时不动，后面会添加新的东西，下面会添加list最热列表
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private LinearLayout mTabhome;
     private LinearLayout mTabact;
@@ -64,11 +60,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 //设置动画用的
-    private void setViewWidth(View view, int x) {
-        ViewGroup.LayoutParams params = view.getLayoutParams();
-        params.width = x;
-        view.setLayoutParams(params);
-    }
+//    private void setViewWidth(View view, int x) {
+//        ViewGroup.LayoutParams params = view.getLayoutParams();
+//        params.width = x;
+//        view.setLayoutParams(params);
+//    }
 
 
 
@@ -80,9 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mImg = new ImageButton[4];
         mText = new TextView[4];
         mTabhome = (LinearLayout) findViewById(R.id.home);
-        mTabact = (LinearLayout) findViewById(R.id.activity);
-        mTabtopic = (LinearLayout) findViewById(R.id.topic);
-        mTabmy = (LinearLayout) findViewById(R.id.my);
+        mTabact = (LinearLayout) findViewById(R.id.activity_layout);
+        mTabtopic = (LinearLayout) findViewById(R.id.topic_layout);
+        mTabmy = (LinearLayout) findViewById(R.id.my_layout);
 
         mImg[0] = (ImageButton) findViewById(R.id.id_tab_home_img);
         mImg[1] = (ImageButton) findViewById(R.id.id_tab_act_img);
@@ -102,19 +98,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTabtopic.setOnClickListener(this);
         mTabmy.setOnClickListener(this);
 
-
-        //消息推送
-        PushAgent mPushAgent=PushAgent.getInstance(getBaseContext());
-        mPushAgent.enable();//打开客户端通知服务，关闭用 disable()
-        //开启推送并设置注册的回调处理
-        mPushAgent.enable(new IUmengRegisterCallback() {
-
-            @Override
-            public void onRegistered(String registrationId) {
-                //onRegistered方法的参数registrationId即是device_token
-                Log.d("device_token", registrationId);
-            }
-        });
     }
     @Override
     public void onClick(View v) {
@@ -134,13 +117,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //如果按的是第一个界面
                 initFragment(0);
                 break;
-            case R.id.activity:
+            case R.id.activity_layout:
                 initFragment(1);
                 break;
-            case R.id.topic:
+            case R.id.topic_layout:
                 initFragment(2);
                 break;
-            case R.id.my:
+            case R.id.my_layout:
                 initFragment(3);
                 break;
         }
@@ -152,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (i) {
             case 0:
             if (mTab[0] == null) {
-                mTab[0] = new fragment_Home();
+                mTab[0] = new HomeFragment();
 
                 fmtran.add(R.id.id_content, mTab[0]);
             } else
@@ -160,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 1:
                 if (mTab[1] == null) {
-                    mTab[1] = new fragment_Activity();
+                    mTab[1] = new ActivityFragment();
                     fmtran.add(R.id.id_content, mTab[1]);
                 } else
                     fmtran.show(mTab[1]);
@@ -174,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 3:
                 if (mTab[3] == null) {
-                    mTab[3] = new fragment_My();
+                    mTab[3] = new MyFragment();
                     fmtran.add(R.id.id_content, mTab[3]);
                 } else
                     fmtran.show(mTab[3]);

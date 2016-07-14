@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+    android:layout_margin="16dp"
+    app:cardBackgroundColor="#aaffffff"
+    app:cardElevation="0dp"
+    app:cardCornerRadius="15dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:padding="16dp"
+        android:id="@+id/context"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="@string/tangyuan"
+        android:textSize="17dp"/>
+<Button
+    android:id="@+id/click"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:alpha="100"
+    android:background="#00ffffff"
+    android:text="点我"
+    android:textSize="16dp"
+    android:textStyle="bold"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentEnd="true"
+    android:visibility="gone"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

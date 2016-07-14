@@ -2,7 +2,6 @@ package com.example.aimee.bottombar;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,14 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.aimee.bottombar.utils.statics.Factories.HttpFactory;
-import com.example.aimee.bottombar.utils.statics.Global;
-import com.example.aimee.bottombar.utils.statics.ParseMD5;
-import com.loopj.android.http.RequestParams;
-
 import cn.smssdk.EventHandler;
-import cn.smssdk.OnSendMessageHandler;
-import cn.smssdk.SMSSDK;
 
 /**
  * Created by Aimee on 2016/3/10.
@@ -49,56 +41,56 @@ public class LogninFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View logn=inflater.inflate(R.layout.login,container,false);
         init(logn);
-        btn_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                code = edit_code.getText().toString().trim();
-                phone = edit_phone.getText().toString().equals("")?null:edit_phone.getText().toString();
-                password = edit_password.getText().toString().equals("")?null:edit_password.getText().toString();
-                if(phone!=null && password!=null){
-                    Handler mHandler = new Handler(){
-                        @Override
-                        public void handleMessage(Message msg) {
-                            super.handleMessage(msg);
-                            if(msg.what== Global.SUCCESS){
-                                String result = msg.getData().getString("result");
-                                if(HttpFactory.CheckResult(result)==true){
-                                    System.out.println("注册成功");
-                                }else{
-                                    System.out.println("注册失败");
-                                }
-                            }else{
-                                System.out.println("注册失败");
-                            }
-                        }
-                    };
-                    //params存放数据
-                    RequestParams params = new RequestParams();
-                    //添加手机号
-                    params.add("userName",phone);
-                    //对密码加密
-                    password = ParseMD5.parseStrToMd5U32(password);
-                    //添加加密后的密码
-                    params.add("password",password);
-                    //设置Handler 然后通过params传数据 向服务器发送数据进行注册
-                    HttpFactory.getUserClient(mHandler).SignUp(params);
-                }
-//                SMSSDK.submitVerificationCode("86",phone,code);
-            }
-        });
-
-        btn_get.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                phone = edit_phone.getText().toString();
-//                SMSSDK.getVerificationCode("86", phone, new OnSendMessageHandler() {
-//                    @Override
-//                    public boolean onSendMessage(String s, String s1) {
-//                        return false;
-//                    }
-//                });
-            }
-        });
+//        btn_submit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                code = edit_code.getText().toString().trim();
+//                phone = edit_phone.getText().toString().equals("")?null:edit_phone.getText().toString();
+//                password = edit_password.getText().toString().equals("")?null:edit_password.getText().toString();
+//                if(phone!=null && password!=null){
+//                    Handler mHandler = new Handler(){
+//                        @Override
+//                        public void handleMessage(Message msg) {
+//                            super.handleMessage(msg);
+//                            if(msg.what== Global.SUCCESS){
+//                                String result = msg.getData().getString("result");
+//                                if(HttpFactory.CheckResult(result)==true){
+//                                    System.out.println("注册成功");
+//                                }else{
+//                                    System.out.println("注册失败");
+//                                }
+//                            }else{
+//                                System.out.println("注册失败");
+//                            }
+//                        }
+//                    };
+//                    //params存放数据
+//                    RequestParams params = new RequestParams();
+//                    //添加手机号
+//                    params.add("userName",phone);
+//                    //对密码加密
+//                    password = ParseMD5.parseStrToMd5U32(password);
+//                    //添加加密后的密码
+//                    params.add("password",password);
+//                    //设置Handler 然后通过params传数据 向服务器发送数据进行注册
+//                    HttpFactory.getUserClient(mHandler).SignUp(params);
+//                }
+////                SMSSDK.submitVerificationCode("86",phone,code);
+//            }
+//        });
+//
+//        btn_get.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                phone = edit_phone.getText().toString();
+////                SMSSDK.getVerificationCode("86", phone, new OnSendMessageHandler() {
+////                    @Override
+////                    public boolean onSendMessage(String s, String s1) {
+////                        return false;
+////                    }
+////                });
+//            }
+//        });
         return logn;
     }
     private void init(View logn)

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.redbooth.WelcomePageLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6a605f">
+<ImageView
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="200dp"
+    android:src="@drawable/haocanid"
+    android:id="@+id/imageView3" />
+    <ImageView
+        android:src="@drawable/holiday"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-200dp"
+        android:id="@+id/imageView4"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/how"
+        android:layout_marginLeft="-50dp"
+        android:layout_below="@+id/imageView4"
+        android:layout_toEndOf="@+id/imageView4" />
+</com.redbooth.WelcomePageLayout>

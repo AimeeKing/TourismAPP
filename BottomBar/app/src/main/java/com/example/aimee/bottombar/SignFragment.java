@@ -1,5 +1,8 @@
 package com.example.aimee.bottombar;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,27 +13,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.aimee.bottombar.model.User;
-import com.example.aimee.bottombar.utils.HttpResult;
-import com.example.aimee.bottombar.utils.statics.Factories.HttpFactory;
-import com.example.aimee.bottombar.utils.statics.Global;
-import com.example.aimee.bottombar.utils.statics.JsonTool;
-import com.example.aimee.bottombar.utils.statics.ParseMD5;
-import com.loopj.android.http.RequestParams;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
+import com.example.aimee.bottombar.newServer.request.UserRequest;
+import com.example.aimee.bottombar.newServer.response.UserResponse;
+import com.example.aimee.bottombar.newServer.utils.ResultCodeDesc;
+import com.example.aimee.bottombar.newServer.utils.statics.Global;
+import com.example.aimee.bottombar.newServer.utils.statics.NewHttpFactory;
 
 /**
  * Created by Aimee on 2016/3/10.
  */
+//这个界面改好了，如果没错的话就可以把那些乱七八糟的删了
 public class SignFragment extends Fragment {
+    private static final int RESULT_SIGN = 0001;
     private EditText edit_phone;
     private EditText edit_password;
     private Button btn_submit;
     private Button btn_forrget;
     private String phone;
     private String password;
-    private Handler handler;
     private static final int RETRY_INTERVAL =6;
     private int time=RETRY_INTERVAL;
     @Override
@@ -42,7 +45,7 @@ public class SignFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       View sign=inflater.inflate(R.layout.signin,container,false);
+       View sign=inflater.inflate(R.layout.login_in,container,false);
        init(sign);
 
         return sign;
@@ -50,7 +53,6 @@ public class SignFragment extends Fragment {
 
     private void init(View sign)
     {
-        handler=new Handler();
         edit_phone = (EditText) sign.findViewById(R.id.username);
         edit_password = (EditText) sign.findViewById(R.id.password);
         btn_submit = (Button) sign.findViewById(R.id.button);
@@ -107,30 +109,57 @@ public class SignFragment extends Fragment {
                                 String result = msg.getData().getString("result");
                                 System.out.println("Result:"+result);
                                 //Toast.makeText(getContext(),"result"+result,Toast.LENGTH_SHORT).show();
-                                User user = JsonTool.toBean(result, User.class);
-                                if(user == null || user.getUserName() == null){
-                                    System.out.println("User"+user);
-                                    HttpResult hResult = JsonTool.toBean(result,HttpResult.class);
-                                    if(hResult.getStatus()==202){
-                                        System.out.println("登录失败");
+                                UserResponse userResponse = JSON.parseObject(result, UserResponse.class);
+                                if(userResponse.getResultCode().equals(ResultCodeDesc.SUCCESS)!=true){
+                                    System.out.println("注册失败");
+                                }else {
+                                    System.out.println("注册成功");
+                                    try {
+//                                      SONObject jsonObject=new JSONObject(result);
+                                        SharedPreferences sh = getActivity().getSharedPreferences("userinfo",
+                                                Activity.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor  = sh.edit();
+                                        editor.putString("user_id",userResponse.getCode())
+                                                .putString("user_name",userResponse.getName())
+                                                .putString("user_nickname",userResponse.getName())
+                                                .putString("user_image",userResponse.getLogoImgUrl())
+                                                .commit();
+                                        Intent i=new Intent();
+                                        Bundle b=new Bundle();
+                                        b.putString("user_nickname",userResponse.getNickName());//"username","手机用户"+edit_phone.getText().toString()
+                                        i.putExtras(b);
+                                        getActivity().setResult(RESULT_SIGN, i);
+                                        getActivity().finish();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                }else
-                                    System.out.println("UserName:"+user.getUserName()+" Created_time:"+user.getCreated_time());
-                            }else{
-                                System.out.println("登录失败");
+                                }
+//                                if(user == null || user.getUserName() == null){
+//                                    System.out.println("User"+user.toString());
+//                                    HttpResult hResult = JsonTool.toBean(result,HttpResult.class);
+//                                    if(hResult.getStatus()==202){
+//                                        System.out.println("登录失败");
+//                                    }
+//                                }else
+//                                    System.out.println("UserName:"+user.getUserName()+" Created_time:"+user.getCreated_time());
+//                            }else{
+//                                System.out.println("登录失败");
                             }
                         }
                     };
-                    //params存放数据
-                    RequestParams params = new RequestParams();
-                    //添加手机号
-                    params.add("userName",phone);
-                    //对密码加密
-                    password = ParseMD5.parseStrToMd5U32(password);
-                    //添加加密后的密码
-                    params.add("password",password);
-                    //设置Handler 然后通过params传数据 向服务器发送数据登录
-                    HttpFactory.getUserClient(mHandler).Login(params);
+//                    //params存放数据
+//                    RequestParams params = new RequestParams();
+//                    //添加手机号
+//                    params.add("userName",phone);
+//                    //对密码加密
+//                    password = ParseMD5.parseStrToMd5U32(password);
+//                    //添加加密后的密码
+//                    params.add("password",password);
+//                    //设置Handler 然后通过params传数据 向服务器发送数据登录
+                    UserRequest userRequest = new UserRequest();
+                    userRequest.setUserName(phone);
+                    userRequest.setPassword(password);
+                    NewHttpFactory.getUserClient().register(userRequest);
                 }else{
                     //Toast.makeText(getContext(),"please enter information",Toast.LENGTH_SHORT).show();
                 }

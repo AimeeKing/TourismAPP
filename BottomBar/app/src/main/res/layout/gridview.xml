@@ -24,14 +24,14 @@
                 android:layout_width="match_parent"
                 android:layout_weight="5"
                 android:layout_height="0dp"
-                android:src="@drawable/class_out"
+                android:src="@drawable/img_1_1"
                 android:scaleType="centerInside"
                 android:id="@+id/img_1_1"/>
             <TextView
                 android:id="@+id/text_1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="班级出游"
+                android:text="走进历史"
                 style="@style/home_text"/>
         </LinearLayout>
 
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="5"
                 android:layout_height="0dp"
-                android:src="@drawable/bick_hide"
+                android:src="@drawable/img_1_2"
                 android:scaleType="centerInside"
                 android:id="@+id/img_1_2"/>
             <TextView
@@ -73,14 +73,14 @@
                 android:layout_width="match_parent"
                 android:layout_weight="6"
                 android:layout_height="0dp"
-                android:src="@drawable/child_out"
+                android:src="@drawable/img_2_1"
                 android:scaleType="centerInside"
                 android:id="@+id/img_2_1"/>
             <TextView
                 android:id="@+id/text_2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="儿童出游"
+                android:text="科学天地"
                 style="@style/home_text"/>
         </LinearLayout>
 
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="6"
                 android:layout_height="0dp"
-                android:src="@drawable/play_myself"
+                android:src="@drawable/img_2_2"
                 android:scaleType="centerInside"
                 android:id="@+id/img_2_2"/>
             <TextView
@@ -123,14 +123,14 @@
                 android:layout_width="match_parent"
                 android:layout_weight="6"
                 android:layout_height="0dp"
-                android:src="@drawable/play"
+                android:src="@drawable/img_3_1"
                 android:scaleType="centerInside"
                 android:id="@+id/img_3_1"/>
             <TextView
                 android:id="@+id/text_3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="演出展览"
+                android:text="志愿活动"
                 style="@style/home_text"/>
         </LinearLayout>
 
@@ -144,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="6"
                 android:layout_height="0dp"
-                android:src="@drawable/knowledge"
+                android:src="@drawable/img_3_2"
                 android:scaleType="centerInside"
                 android:id="@+id/img_3_2"/>
             <TextView

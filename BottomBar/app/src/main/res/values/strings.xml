@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">tab_view</string>
+    <string name="app_name">嗨学</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="activity">activity</string>
     <string name="home">home</string>
@@ -12,6 +12,7 @@
     <string name="topic">topic</string>
     <string name="query">输入活动，地点</string>
     <string name="about">定制活动是指，您提出新的活动方案，网友为您点赞，点赞超过一定数额后，我们帮你联系相应的景点，推出低于市场价的团购优惠，点赞网友皆可享受此优惠（活动众筹）</string>
+    <string name="remind">我们采用线上报名，线下支付的方式，为您提供更好的保障，如果您临时有事不想参加，请及时退票或联系商家，无故缺席次数过多我们会降低您的信用值，甚至拉入黑名单</string>
 
 
      <string name="lipsum">Lorem ipsum dolor sit amet, ut duis lorem provident sed felis blandit,
@@ -79,4 +80,150 @@
     <string name="title_activity_content_moreinfo">content_moreinfo</string>
     <string name="title_activity_comment_activity">Comment_activity</string>
     <string name="out">out</string>
+
+    <string-array name="text">
+        <item>  相传汉武帝有个宠臣名叫东方朔，他善良又风趣。有一天冬天，下了几天大雪 ，东方朔就到御花园去给武帝折梅花。刚进园门，就发现有个宫女泪流满面准备投井。东方朔慌忙上前搭救，并问明她要自杀的原因。原来，这个宫女名叫元宵，家里还有双亲及一个妹妹。自从她进宫以后，就再也无缘和家人见面。每年到了腊尽春来的时节，
+        就比平常更加的思念家人。觉得不能在双亲跟前尽孝，不如一死了之。东方朔听了她的遭遇，深感同情，就向她保证，一定设法让她和家人团聚。</item>
+         <item>  一天，东方朔出宫在长安街上摆了一个占卜摊。不少人都争着向他占卜求卦。不料，每个人所占所求，都是“正月十六火焚身”的签语。一时之间，长安里起了很大恐慌。人们纷纷求问解灾的办法。东方朔就说：“正月十三日傍晚，火神君会派一位赤衣神女下凡查访，她就是奉旨烧长安的使者，我把抄录的偈语给你们，可让当今天子想想办法。
+        ”说完，便扔下一张红帖，扬长而去。老百姓拿起红帖，赶紧送 到皇宫去禀报皇上</item>
+        <item>  汉武帝接过来一看，只见上面写着：“长安在劫，火焚帝阙，十五天火，焰红宵夜”，他心中大惊，连忙请来了足智多谋的东方朔。东方朔假意的想了一想，就说：“听说火神君最爱吃汤圆，宫中的元宵不是经常给你做汤圆吗？十五晚上可让元宵做好汤圆。万岁焚香上供，传令京都家家都做汤圆，一齐敬奉火神君。再传谕臣民一起在十五晚上挂灯，
+        满城点鞭炮、放烟火，好像满城大火，这样就可以瞒过玉帝了。 此外，通知城外百姓，十五晚上进城观灯，杂在人群中消灾解难”。武帝听后，十分高兴，就传旨照东方朔的办法去做。</item>
+         <item>　到了正月十五日长安城里张灯结彩，游人熙来攘往，热闹非常。宫女元宵的父母也带着妹妹进城观灯。当他们看到写有“元宵”字样的大宫灯时，惊喜的高喊：“元宵！元宵！”， 元宵听到喊声，终于和家里的亲人团聚了。
+如此热闹了一夜，长安城果然平安无事。汉武帝大喜，便下令以后每到正月十五都做汤圆供火神君，正月十五照样全城挂灯放烟火。因为元宵做的汤圆最好，人们就把汤圆叫元宵，这天叫做元宵节。</item>
+        <item><b>小朋友们</b>看完这个故事，想不想也一起动手做汤圆呢？这一回菠萝姐姐为大家带来了“汤圆大作战”活动，由我们帅气的“缸鸭狗”主厨--XX叔叔教大家怎么做榴莲汤圆，小朋友们，想和小伙伴一起做汤圆猜灯谜吗，想知道缸鸭狗的发展历史吗，<b>快和爸爸妈妈一起来参加我们的活动吧，</b>详情点击下方图标。
+感谢缸鸭狗对本活动的大力支持</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tangyuan">小朋友们，看完这个故事，想不想也一起动手做汤圆呢？这一回菠萝姐姐为大家带来了“汤圆大作战”活动，由我们帅气的“缸鸭狗”主厨--XX叔叔教大家怎么做榴莲汤圆，小朋友们，
+            想和小伙伴一起做汤圆猜灯谜吗，想知道缸鸭狗的发展历史吗，快和爸爸妈妈一起来参加我们的活动吧，详情点击下方图标。\n感谢缸鸭狗对本活动的大力支持</string>
+    <string name="title_activity_content">ContentActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="recommend"> "    胡庆余堂，大家对他并不陌生，然而，这一次胡庆余堂开始“不务正业”的卖起了咖啡。当中药老字号撞上咖啡，会是一种怎样的奇妙的味觉之旅呢？"</string>
+    <string name="activity_content">活动背景：2016年的春天，《疯狂动物城》这股春风席卷了孩子的世界，冲击着大人的眼球。今天，兔朱迪远从千里之外来到了北京，为了寻找275个兄弟姐妹中那遗落在北京的弟弟—兔爷。根据霍普斯女士给兔朱迪的线索，她搜索目标锁定北京西城的古琉璃厂文化区的大小胡同中。但是，面对交错纵横的胡同小巷，兔朱迪彻底晕了方向，让我们一起齐心协力帮助兔朱迪踏上一场异国寻亲之旅吧。
+
+让电影《疯狂动物城》的正能量延续，让每一个孩子心中的英雄梦重现，开始一场冒险之旅！
+深入皇城根下，穿梭在胡同小巷，发现城市里不起眼的小角落，小惊喜。带上你的孩子，用发现美的火眼金睛开启一场探案传奇。
+与非物质文化遗产传承人面对面，倾听老北京风俗中的兔爷传奇，亲手绘制你心中的兔爷形象。
+
+【集合时间】上午8:30-9:00（半小时集合时间，请勿迟到）
+【集合地点】京华印书局（游侠客黄色旗帜为标志）地铁7号线A出口往南新华街方向步行100米
+【适合人群】5岁以上的游侠小宝贝及其爸比妈咪们
+【交通工具】自选交通工具前往指定目的地
+【活动领队】优秀的亲子游领队
+    【费用包含】
+材料费用
+非遗传承人授课费用
+其他：活动组织成本
+
+【费用不含】
+交通费用
+其他自费项目
+
+每个小朋友都有自己的小性格，但团队活动需听从领队和老师安排，遇到突发情况请领队联系协商解决。
+注意安全，注重环保，尊重当地百姓，发扬游侠互助精神，友善对待遇到的每个人、每件事。
+若遇人力不可抗拒情况，无法继续既定行程，领队可根据实际情况有权更改或调整行程。
+若因自身原因，中途退出活动，费用不退，敬请谅解。
+妥善保管好自己的随身物品，贵重物品请随身携带。
+参加本次活动者视为遵守以上出团约定。
+
+兔爷简介：
+泥彩塑兔儿爷，讲究三分塑，七分彩，彩绘的难度可想而知。兔儿爷造型多样，而最初的兔儿爷是座山兔儿爷。有了最初的这一种造型，便有衍生出了各种带有坐骑的造型，如骑虎兔儿爷、骑鹿兔儿爷、骑麒麟兔儿爷，等等。不同的坐骑本没有不同的含义，都是民间的祥瑞之兽。而在这些瑞兽当中，唯一不能骑的就是龙。因为在古时候，龙是皇家的象征，民间百姓是不能染指的。
+兔爷文化：
+兔儿爷是老北京的传统玩具，在记录老北京风俗的《燕京岁时记》中，曾有这样的记载：“每届中秋，市人之巧者用黄泥抟成蟾兔之像以出售，谓之兔儿爷。”现在的兔儿爷有多种不同的造型，在这许许多多不同的造型中，最初出现的则是座山兔儿爷。为什么说座山兔儿爷才是最初出现的兔儿爷呢？因为座山兔儿爷上的各种装饰，都是对于兔儿爷传说的一丝不苟的记录。庙门、祥云、韦陀的服饰、手持的捣药杵，在座山兔儿爷身上都有体现。而最最重要的是，一件完整的座山兔儿爷作品，背后还要插上一杆旗杆。现在市面上销售的兔儿爷，出于美观的考虑，往往给兔儿爷的背后插上两杆或四杆旗杆，乍一看与京剧里的武生相仿佛，但这种装饰都是没有根据的。兔儿爷的背后之所以要插上一杆旗杆，也只能插一杆旗杆，是为了纪念兔爷被发现的地点，是在庙门外的旗杆下，所插的旗杆，自然就代表了庙门外的那一杆，很多人不了解这个传说，只是根据自己的想象去制作，作品便少了几分文化底蕴。</string>
+    <string name="pull_to_refresh_pull_label">下拉刷新的头</string>
+    <string name="title_activity_plan">我的计划</string>
+    <string name="step_continue">完成</string>
+    <string name="step_cancel">还未完成</string>
+    <string name="step_finish">已经完成</string>
+    <string name="cardActivity">我的卡券</string>
+    <string name="login">登录</string>
 </resources>
+

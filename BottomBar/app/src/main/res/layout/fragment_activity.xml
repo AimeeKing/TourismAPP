@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
+    tools:context=".TicketInfoActivity">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
+        android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
         <TextView
             android:id="@+id/toolbar_title"
@@ -21,20 +21,24 @@
             android:layout_gravity="center"
             />
     </android.support.v7.widget.Toolbar>
-
+    <com.example.aimee.bottombar.View.PullToRefreshView
+        android:layout_below="@id/toolbar"
+        android:id="@+id/pull_to_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <view
         android:id="@+id/recycle_view"
-        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         class="android.support.v7.widget.RecyclerView"
         android:layout_centerInParent="true"
         />
+    </com.example.aimee.bottombar.View.PullToRefreshView>
+    <!--class="android.support.v7.widget.RecyclerView"-->
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:indeterminate="false" />
-
 </RelativeLayout>

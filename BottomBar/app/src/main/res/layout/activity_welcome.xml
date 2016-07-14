@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".WelcomeActivity">
+<com.redbooth.WelcomeCoordinatorLayout
+    android:id="@+id/welcome_coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:showIndicators="false"
+    android:background="#6ebab4"
+    app:indicatorUnselected="#99b7b7b7"
+    app:indicatorSelected="#bfb7b7b7" >
+</com.redbooth.WelcomeCoordinatorLayout>
+    <Button
+        style="?attr/borderlessButtonStyle"
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="skip"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"/>
+</RelativeLayout>

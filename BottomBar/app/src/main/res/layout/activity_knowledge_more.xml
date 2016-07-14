@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/knowledge_bg"
+        android:scaleType="centerCrop"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.aimee.knowledge.Knowledge_more"
+        >
+        <android.support.v4.view.ViewPager
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="16dp"
+            android:elevation="5dp"
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="320dp">
+        </android.support.v4.view.ViewPager>
+        <FrameLayout
+            android:layout_below="@id/viewpager"
+            android:id="@+id/fab_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            >
+            <RelativeLayout
+                android:id="@+id/cat_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+                <ImageView
+                    android:layout_width="136dp"
+                    android:layout_height="87dp"
+                    android:src="@drawable/cat"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="left|bottom"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/catshow"
+                    android:layout_marginLeft="9dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="神农尝百草"
+                    android:id="@+id/title"
+                    android:textStyle="bold"
+                    android:textSize="32dp"
+                    android:textColor="#5c3632"
+                    android:layout_gravity="center"
+                    android:layout_alignTop="@+id/catshow"
+                    android:layout_toEndOf="@+id/catshow" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/play_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+                <!--          <ImageView
+                              android:layout_width="136dp"
+                              android:layout_height="87dp"
+                              android:src="@drawable/cat"
+                              android:scaleType="centerInside"
+                              android:layout_gravity="left|bottom"
+                              android:layout_alignParentBottom="true"
+                              android:layout_alignParentStart="true"
+                              android:layout_marginBottom="-60dp"
+                              android:layout_marginLeft="9dp"
+                              />
+              -->
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/backward"
+                    android:src="@drawable/banckward"
+                    android:scaleType="centerInside"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="62dp"
+                    android:layout_marginBottom="34dp" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/pause"
+                    android:src="@drawable/pause"
+                    android:scaleType="centerInside"
+                    android:layout_alignTop="@+id/backward"
+                    android:layout_centerHorizontal="true" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/forward"
+                    android:src="@drawable/forward"
+                    android:scaleType="centerInside"
+                    android:layout_alignTop="@+id/pause"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="65dp" />
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/seekbar"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="03:33"
+                    android:id="@+id/fromtime"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="9dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="03:33"
+                    android:id="@+id/endtime"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="15dp"
+                    />
+            </RelativeLayout>
+        </FrameLayout>
+    </RelativeLayout>
+</FrameLayout>

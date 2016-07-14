@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/new_organize" android:title="创建私人队伍"
+        android:icon="@drawable/newfriend"/>
+    <item android:id="@+id/join_organize" android:title="加入私人队伍"
+        android:icon="@drawable/friend"/>
+</menu>

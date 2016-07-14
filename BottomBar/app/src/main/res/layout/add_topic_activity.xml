@@ -5,17 +5,26 @@
     android:background="@color/white">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="@color/primary"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
     <EditText
         android:gravity="start"
         android:inputType="textMultiLine"
-        android:hint="在这里你可以定制自己想要的活动，点赞人数越多，就越有可能实现，也可以发布您的体验"
+        android:hint="想个题目吧"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/title"/>
+    <EditText
+        android:gravity="start"
+        android:inputType="textMultiLine"
+        android:hint="说说你的感想，点赞超过20的我们有游币奖励哦"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="@null"/>
+        android:background="@null"
+        android:id="@+id/text"/>
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"

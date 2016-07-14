@@ -19,7 +19,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/mengmeizi"/>
+            android:src="@drawable/hahahaaha"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -6,11 +6,8 @@
 <include
     layout="@layout/searchviewlayout"
     android:id="@+id/search"></include>
-    <ListView
-        android:id="@+id/search_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </ListView>
-
+<com.example.aimee.bottombar.View.Flowlayout
+    android:id="@+id/flowlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 </LinearLayout>

@@ -7,29 +7,54 @@ import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.TransitionInflater;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.umeng.message.PushAgent;
+import com.example.aimee.bottombar.View.Flowlayout;
+
 //这个是搜索的界面
 public class SearchActivity extends Activity {
 
     private ImageView imageview;
     private EditText edit;
-    private ListView listView;
-
+    private  String[] list = {
+            "小和山探险","中华小当家","胡庆余堂","职业体验","制作书签"
+    };
+    Flowlayout flowlayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         setupWindowAnimations();
+        flowlayout = (Flowlayout) findViewById(R.id.flowlayout);
+        initTag();
         initsearch();
+    }
+
+    private void initTag() {
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        for(int i=0;i<list.length;i++)
+        {
+            final TextView tagTV = (TextView) layoutInflater.inflate(R.layout.tagtextview,flowlayout,false);
+            tagTV.setText(list[i]);
+            tagTV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(SearchActivity.this, ListActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("key", tagTV.getText().toString());
+                    i.putExtras(bundle);
+                    startActivity(i);
+                }
+            });
+            flowlayout.addView(tagTV);
+        }
     }
 
     private void initsearch() {
@@ -48,7 +73,7 @@ public class SearchActivity extends Activity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEND ||
                         actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    Intent i = new Intent(SearchActivity.this, list_activity.class);
+                    Intent i = new Intent(SearchActivity.this, ListActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("key", edit.getText().toString());
                     i.putExtras(bundle);
@@ -58,8 +83,6 @@ public class SearchActivity extends Activity {
             }
         });
 
-        //友盟推送要求，每个activity都要用这个函数，不然会导致广播发送不成功
-        PushAgent.getInstance(getBaseContext()).onAppStart();
     }
 
     private void setupWindowAnimations() {

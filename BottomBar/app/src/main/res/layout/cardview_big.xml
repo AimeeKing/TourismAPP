@@ -18,20 +18,20 @@
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
             android:src="@drawable/beautyto" />
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="3"
-            android:padding="8dp"
-            android:background="#ff5802"
-            android:text="  99元起"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:layout_alignBottom="@+id/thumbnail"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="10dp" />
+        <!--<TextView-->
+            <!--android:id="@+id/price"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:maxLines="3"-->
+            <!--android:padding="8dp"-->
+            <!--android:background="#ff5802"-->
+            <!--android:text="  免费哦"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="15dp"-->
+            <!--android:layout_alignBottom="@+id/thumbnail"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_marginBottom="10dp" />-->
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"

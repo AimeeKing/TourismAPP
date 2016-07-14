@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_game"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        >
+        <link.fls.swipestack.SwipeStack
+            android:id="@+id/cardview"
+            android:background="#77fffef8"
+            android:layout_width="320dp"
+            android:layout_height="420dp"
+            android:layout_marginTop="44dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            app:allowed_swipe_directions="only_left"
+            app:stack_size ="10">
+        </link.fls.swipestack.SwipeStack>
+    </RelativeLayout>
+</FrameLayout>

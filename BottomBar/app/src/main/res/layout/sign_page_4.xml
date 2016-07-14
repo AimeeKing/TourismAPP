@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.redbooth.WelcomePageLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/welcome_page"
+    tools:background="@color/page1">
+
+    <TextView
+        style="@style/text_subtitle"
+        android:id="@+id/title"
+        android:layout_above="@+id/subtitle"
+        android:text="最后一步，请您"
+        />
+    <TextView
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        style="@style/text_title"
+        android:id="@+id/subtitle"
+        android:text="选择孩子的年级"
+        />
+    <Spinner
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/type"
+        android:id="@+id/age_type"
+        android:imeOptions="actionDone">
+    </Spinner>
+</com.redbooth.WelcomePageLayout>

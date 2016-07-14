@@ -13,10 +13,9 @@ import android.view.ViewGroup;
 /**
  * Created by Aimee on 2016/3/20.
  */
+//这个是一个备用界面，本来是想让它可以有一个ViewPager来展示两个界面（图片分享和圈子）
 public class fragment_Topic extends Fragment {
     private Toolbar toolbar;
-   /* private TabLayout tableLayout;
-    private ViewPager viewPager;*/
     private AppCompatActivity activity;
 
     @Override
@@ -33,53 +32,10 @@ public class fragment_Topic extends Fragment {
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
         FragmentManager fm=((AppCompatActivity) getActivity()).getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.framelayout,new acttopic_Fragment()).commit();
-        /*
-        viewPager = (ViewPager)v.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        fm.beginTransaction().replace(R.id.framelayout,new TopicFragment()).commit();
 
-        tableLayout =(TabLayout)v.findViewById(R.id.tabs);
-        tableLayout.setupWithViewPager(viewPager);*/
         return v;
     }
-    /*
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(activity.getSupportFragmentManager());
-        adapter.addFragment(new acttopic_Fragment(), "话题");
-        adapter.addFragment(new friend_fragment(), "朋友圈");
-        viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<android.support.v4.app.Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public android.support.v4.app.Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(android.support.v4.app.Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
-    */
-
     @Override
     public void onStart() {
         super.onStart();

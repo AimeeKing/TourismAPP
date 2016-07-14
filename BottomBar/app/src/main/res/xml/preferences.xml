@@ -10,7 +10,7 @@
         >
         <EditTextPreference
             android:layout="@layout/preference_item"
-            android:key="username"
+            android:key="user_nickname"
             android:title="点这里更改用户名"
             android:summary="用户名"
             ></EditTextPreference>

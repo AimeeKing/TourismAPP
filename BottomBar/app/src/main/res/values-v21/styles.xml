@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
     </style>
+
     <style name="MySpinner" parent="Widget.AppCompat.Light.Spinner.DropDown.ActionBar">
-    <item name="android:background">?android:selectableItemBackground</item>
-    <item name="android:dropDownSelector">?android:selectableItemBackground</item>
-    <item name="android:divider">@null</item>
-    <item name="android:overlapAnchor">true</item>
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:dropDownSelector">?android:selectableItemBackground</item>
+        <item name="android:divider">@null</item>
+        <item name="android:overlapAnchor">true</item>
     </style>
+
     <style name="home_text">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/secondary_text</item>
@@ -25,6 +28,7 @@
         <item name="android:textSize">23dp</item>
         <item name="android:typeface">sans</item>
     </style>
+
     <style name="submitstyle">
         <item name="android:textSize">23dp</item>
         <item name="android:typeface">normal</item>
@@ -32,7 +36,7 @@
         <item name="android:textColorHint">@color/hint</item>
     </style>
 
-    <style name="Mybutton" parent ="Theme.AppCompat.Light">
+    <style name="Mybutton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">@color/pressed</item>
         <item name="colorButtonNormal">@color/orange</item>
 
@@ -49,7 +53,7 @@
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="colorAccent">@color/white</item>
         <item name="tabTextAppearance">@style/MyCustomTabText</item>
-        <item name="tabSelectedTextColor">@color/primary</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
         <item name="android:paddingBottom">0dp</item>
         <item name="tabBackground">@drawable/tab_background</item>
     </style>

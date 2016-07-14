@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.redbooth.WelcomePageLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5dbe9e">
+<ImageView
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:src="@drawable/app"
+    android:id="@+id/imageView5" />
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/use"
+        android:id="@+id/imageView8"
+        android:layout_alignTop="@+id/imageView7"
+        android:layout_toStartOf="@+id/imageView6" />
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:src="@drawable/haixue"
+        android:id="@+id/imageView6"
+        android:layout_below="@+id/imageView5"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/a"
+        android:id="@+id/imageView7"
+        android:layout_alignBottom="@+id/imageView6"
+        android:layout_alignEnd="@+id/imageView5" />
+    <Button
+        style="?attr/borderlessButtonStyle"
+        android:id="@+id/sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注册"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/imageView8"
+        android:layout_toEndOf="@+id/imageView8" />
+    <Button
+        style="?attr/borderlessButtonStyle"
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_alignTop="@+id/sign"
+        android:layout_toEndOf="@+id/sign" />
+</com.redbooth.WelcomePageLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#4CAF50</color>
-    <color name="primary_dark">#388E3C</color>
+    <color name="colorPrimary">#14bd9e</color>
+    <color name="primary_dark">#0e967e</color>
     <color name="primary_light">#C8E6C9</color>
     <color name="accent">#8BC34A</color>
     <color name="primary_text">#212121</color>
@@ -15,7 +15,7 @@
     <color name="myred">#eb4f38</color>
 
 
-    <color name="white">#ffffff</color>
+    <color name="white">#FFFFFF</color>
     <color name="grey">#393939</color>
     <color name="black_semi_transparent">#B2000000</color>
     <color name="background">#e5e5e5</color>
@@ -41,11 +41,20 @@
     <color name="pressed">#ff9734</color>
     <color name="yellow">#ffbb3c</color>
     <color name="tab_background_selected">#ffffff</color>
-    <color name="tab_background_unselected">@color/primary</color>
+    <color name="tab_background_unselected">@color/colorPrimary</color>
     <color name="item_color">#000000</color>
     <color name="press">#226b74ff</color>
 
 
     <color name="gray_de">#666666</color>
 
+    <color name="circle_color_default_blue">#4184F3</color>
+    <color name="circle_color_default_gray">#BDBDBD</color>
+
+    <color name="colorPrimaryDarkAlpha">#84303f9f</color>
+    <color name="page0">#68B7AB</color>
+    <color name="page1">#ff21B8AC</color>
+    <color name="page2">#ff218AB8</color>
+    <color name="page3">#ff21A5B8</color>
+    <color name="page4">#ff1F8B9B</color>
 </resources>

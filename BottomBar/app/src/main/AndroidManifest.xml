@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.aimee.bottombar" >
+    package="com.example.aimee.bottombar">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 注册用到的权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -21,11 +22,10 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name=".AppControl"
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/haixue_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="56f91338e0f55a8cc30002dc" />
@@ -34,12 +34,11 @@
             android:value="c88be2948a853b44427593f337a3201b" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="channelribbit" >
-        </meta-data>
+            android:value="channelribbit" />
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,44 +47,52 @@
         </activity>
         <activity
             android:name=".SearchActivity"
-            android:label="@string/title_activity_search" >
-        </activity>
+            android:label="@string/title_activity_search" />
         <activity
-            android:name=".content_activity"
-            android:label="@string/title_activity_content_activity" >
-        </activity>
+            android:name=".ListActivity"
+            android:label="@string/title_activity_list_activity" />
         <activity
-            android:name=".list_activity"
-            android:label="@string/title_activity_list_activity" >
-        </activity>
+            android:name=".AddTopicActivity"
+            android:label="@string/title_activity_add_activity" />
         <activity
-            android:name=".Sign_Activity"
-            android:label="@string/title_activity_sign_" >
-        </activity>
+            android:name=".AddActivityPlanTopicActivity"
+            android:label="@string/title_activity_add_actplan" />
         <activity
-            android:name=".add_Topic_Acitvity"
-            android:label="@string/title_activity_add_activity" >
-        </activity>
+            android:name=".ClassifyActivity"
+            android:label="@string/title_activity_click_" />
         <activity
-            android:name=".add_actplan"
-            android:label="@string/title_activity_add_actplan" >
-        </activity>
+            android:name=".SettingActivity"
+            android:label="@string/title_activity_setting" />
         <activity
-            android:name=".Click_Activity"
-            android:label="@string/title_activity_click_" >
-        </activity>
+            android:name=".TicketInfoActivity"
+            android:label="@string/title_activity_content_moreinfo" />
+        <activity android:name=".KnowledgeSwipeStake" />
+        <activity android:name=".Knowledge_more" />
+
+        <service android:name=".Service.MusicService" />
+
         <activity
-            android:name=".setting"
-            android:label="@string/title_activity_setting" >
-        </activity>
+            android:name=".ContentActivity"
+            android:label="@string/title_activity_content"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".EnrollActivity" />
         <activity
-            android:name=".content_moreinfo"
-            android:label="@string/title_activity_content_moreinfo" >
-        </activity>
+            android:name=".PlanActivity"
+            android:label="@string/title_activity_plan"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".BuyInfoActivity" />
+        <activity android:name=".NewPackageAcitivity" />
+        <activity android:name=".BuySucessActivity" />
+        <activity android:name=".SinUpActivitySec" />
+        <activity android:name=".WelcomeActivity" />
+        <activity android:name=".CollectActivity" />
         <activity
-            android:name=".Comment_activity"
-            android:label="@string/title_activity_comment_activity" >
-        </activity>
+            android:name=".CardActivity"
+            android:label="@string/cardActivity"></activity>
+        <activity
+            android:name=".LoginFragment"
+            android:label="@string/login" />
+        <activity android:name=".HadTicketActivity"></activity>
     </application>
 
 </manifest>

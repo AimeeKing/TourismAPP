@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.redbooth.WelcomePageLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/welcome_page"
+    tools:background="@color/page2">
+
+    <TextView
+        app:view_behavior=".View.ParallaxSubtitleBehaviour"
+        style="@style/text_subtitle"
+        android:id="@+id/title"
+        android:layout_above="@+id/subtitle"
+        android:text="好的，现在请您"
+        />
+    <TextView
+        app:view_behavior=".View.ParallaxTitleBehaviour"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        style="@style/text_title"
+        android:id="@+id/subtitle"
+        android:text="取一个好听的昵称"
+        />
+    <EditText
+        android:singleLine="true"
+        app:view_behavior=".View.ParallaxSubtitleBehaviour"
+        android:id="@+id/nickname"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/text_title"
+        android:layout_below="@+id/subtitle"
+        android:backgroundTint="@color/white"
+        android:textSize="25dp"
+        android:hint="eg 多多妈咪"
+        android:textColorHint="#99ffffff"
+        android:imeOptions="actionDone"/>
+
+
+</com.redbooth.WelcomePageLayout>
+

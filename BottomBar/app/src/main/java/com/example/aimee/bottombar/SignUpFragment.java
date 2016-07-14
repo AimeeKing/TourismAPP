@@ -1,6 +1,8 @@
 package com.example.aimee.bottombar;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,10 +14,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.aimee.bottombar.tony.utils.statics.Factories.HttpFactory;
-import com.example.aimee.bottombar.tony.utils.statics.Global;
-import com.example.aimee.bottombar.tony.utils.statics.ParseMD5;
-import com.loopj.android.http.RequestParams;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
+import com.example.aimee.bottombar.newServer.request.UserRequest;
+import com.example.aimee.bottombar.newServer.response.UserResponse;
+import com.example.aimee.bottombar.newServer.utils.ResultCodeDesc;
+import com.example.aimee.bottombar.newServer.utils.statics.Global;
+import com.example.aimee.bottombar.newServer.utils.statics.NewHttpFactory;
 
 import cn.smssdk.EventHandler;
 import cn.smssdk.OnSendMessageHandler;
@@ -24,6 +29,7 @@ import cn.smssdk.SMSSDK;
 /**
  * Created by Aimee on 2016/3/10.
  */
+//注册界面总是害怕有错
 public class SignUpFragment extends Fragment {
     private static final int RESULT_LOGIN = 0002;
     private EditText edit_phone;
@@ -59,44 +65,53 @@ public class SignUpFragment extends Fragment {
                 code = edit_code.getText().toString().trim();
                 phone = edit_phone.getText().toString().equals("")?null:edit_phone.getText().toString();
                 password = edit_password.getText().toString().equals("")?null:edit_password.getText().toString();
-                if(phone!=null && password!=null){
-                    Handler mHandler = new Handler(){
-                        @Override
-                        public void handleMessage(Message msg) {
-                            super.handleMessage(msg);
-                            if(msg.what == Global.SUCCESS){
-                                String result = msg.getData().getString("result");
-                                System.out.println("Result:"+result);
-                                switch (HttpFactory.CheckResult(result)){
-                                    case Global.IsHRadSuccess:
-                                        System.out.println("注册成功");
-                                        break;
-                                    case Global.IsHRbtFail:
-                                        System.out.println("注册失败");
-                                        break;
-                                }
-                            }else{
-                                System.out.println("注册失败");
-                            }
-                        }
-                    };
-                    //params存放数据
-                    RequestParams params = new RequestParams();
-                    //添加手机号
-                    params.add("userName",phone);
-                    //对密码加密
-                    password = ParseMD5.parseStrToMd5U32(password);
-                    //添加加密后的密码
-                    params.add("password", password);
-                    //设置Handler 然后通过params传数据 向服务器发送数据进行注册
-                    HttpFactory.getUserClient(mHandler).SignUp(params);
-                    System.out.println("按下返回键");
-                    Bundle b=new Bundle();
-                    b.putString("username","手机用户"+edit_phone.getText().toString());
-                    i.putExtras(b);
-                    getActivity().setResult(RESULT_LOGIN, i);
-                    getActivity().finish();
-                }
+//                if(phone!=null && password!=null){
+//                    Handler mHandler = new Handler(){
+//                        @Override
+//                        public void handleMessage(Message msg) {
+//                            super.handleMessage(msg);
+//                            String result = msg.getData().getString("result");
+//                            System.out.println("Result:"+result);
+//                            UserResponse userResponse = JSON.parseObject(result,UserResponse.class);
+//                            System.out.println("Result:"+JSON.toJSONString(userResponse));
+//
+//                            //判断是否登录成功  直接获取response里面的成员进行查询
+//                            if(userResponse.getResultCode().equals(ResultCodeDesc.SUCCESS)!=true){
+//                                System.out.println("登录失败");
+//                            }else{
+//                                System.out.println("登录成功");
+//                                try {
+////                                            JSONObject jsonObject=new JSONObject(result);
+//                                    SharedPreferences sh = getActivity().getSharedPreferences("userinfo",
+//                                            Activity.MODE_PRIVATE);
+//                                    SharedPreferences.Editor editor  = sh.edit();
+//                                    editor.putString("user_id",userResponse.getCode())
+//                                            .putString("user_name",userResponse.getName())
+//                                            .putString("user_nick_name",userResponse.getNickName())
+//                                            .putString("user_image",userResponse.getLogoImgUrl())
+//                                            .commit();
+//                                    i=new Intent();
+//                                    Bundle b=new Bundle();
+//                                    b.putString("user_nickname",userResponse.getNickName());//"username","手机用户"+edit_phone.getText().toString()
+//                                    i.putExtras(b);
+//                                    getActivity().setResult(RESULT_LOGIN, i);
+//                                    getActivity().finish();
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        }
+//                    };
+//                    UserRequest userRequest = new UserRequest();
+//                    userRequest.setUserName(phone);
+//                    userRequest.setPassword(password);
+//                    NewHttpFactory.getUserClient().register(userRequest);
+////                    Bundle b=new Bundle();
+////                    b.putString("user_nickname","手机用户"+edit_phone.getText().toString());
+////                    i.putExtras(b);
+////                    getActivity().setResult(RESULT_LOGIN, i);
+////                    getActivity().finish();
+//                }
                 SMSSDK.submitVerificationCode("86",phone,code);
             }
         });
@@ -125,49 +140,86 @@ public class SignUpFragment extends Fragment {
         btn_get=(Button)logn.findViewById(R.id.require_code);
         btn_height=btn_get.getHeight();
          SMSSDK.initSDK(this.getActivity(), APPKEY, APPSECRET);
-       eh = new EventHandler(){
+        eh = new EventHandler() {
             @Override
             public void afterEvent(int event, int result, Object data) {
-                if(result == SMSSDK.RESULT_COMPLETE)
-                {
+                if (result == SMSSDK.RESULT_COMPLETE) {
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                         //提交验证码成功,校验验证码，返回校验的手机和国家代码
-                        password=edit_password.getText().toString();
+                        password = edit_password.getText().toString();
                         //传值给服务器
-
-
                         System.out.print("验证成功");
 
-                         if(phone!=null && password!=null){
-                    Handler mHandler = new Handler(){
-                        @Override
-                        public void handleMessage(Message msg) {
-                            super.handleMessage(msg);
-                            if(msg.what == Global.SUCCESS){
-                                String result = msg.getData().getString("result");
-                                switch (HttpFactory.CheckResult(result)){
-                                    case Global.IsHRadSuccess:
+                        if (phone != null && password != null) {
+                            Global.mHandler = new Handler() {
+                                @Override
+                                public void handleMessage(Message msg) {
+                                    super.handleMessage(msg);
+                                    String result = msg.getData().getString("result");
+                                    System.out.println("Result:" + result);
+                                    UserResponse userResponse = JSON.parseObject(result, UserResponse.class);
+                                    System.out.println("Result:" + JSON.toJSONString(userResponse));
+
+                                    //判断是否登录成功  直接获取response里面的成员进行查询
+                                    if (userResponse.getResultCode().equals(ResultCodeDesc.SUCCESS) != true) {
                                         System.out.println("注册成功");
-                                        break;
-                                    case Global.IsHRbtFail:
+                                    } else {
                                         System.out.println("注册失败");
-                                        break;
+                                        try {
+//                                            JSONObject jsonObject=new JSONObject(result);
+                                            SharedPreferences sh = getActivity().getSharedPreferences("userinfo",
+                                                    Activity.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sh.edit();
+                                            editor.putString("user_id", userResponse.getCode())
+                                                    .putString("user_name", userResponse.getName())
+                                                    .putString("user_nick_name", userResponse.getNickName())
+                                                    .putString("user_image", userResponse.getLogoImgUrl())
+                                                    .commit();
+                                            i = new Intent();
+                                            Bundle b = new Bundle();
+                                            b.putString("user_nickname", userResponse.getNickName());//"username","手机用户"+edit_phone.getText().toString()
+                                            i.putExtras(b);
+                                            getActivity().setResult(RESULT_LOGIN, i);
+                                            getActivity().finish();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
                                 }
-                            }else{
-                                System.out.println("注册失败");
-                            }
-                        }
-                    };
-                    //params存放数据
-                    RequestParams params = new RequestParams();
-                    //添加手机号
-                    params.add("userName",phone);
-                    //对密码加密
-                    password = ParseMD5.parseStrToMd5U32(password);
-                    //添加加密后的密码
-                    params.add("password",password);
-                    //设置Handler 然后通过params传数据 向服务器发送数据进行注册
-                    HttpFactory.getUserClient(mHandler).SignUp(params);
+                            };
+                            UserRequest userRequest = new UserRequest();
+                            userRequest.setUserName(phone);
+                            userRequest.setPassword(password);
+                            NewHttpFactory.getUserClient().register(userRequest);
+//                    Handler mHandler = new Handler(){
+//                        @Override
+//                        public void handleMessage(Message msg) {
+//                            super.handleMessage(msg);
+//                            if(msg.what == Global.SUCCESS){
+//                                String result = msg.getData().getString("result");
+//                                switch (HttpFactory.CheckResult(result)){
+//                                    case Global.IsHRadSuccess:
+//                                        System.out.println("注册成功");
+//                                        break;
+//                                    case Global.IsHRbtFail:
+//                                        System.out.println("注册失败");
+//                                        break;
+//                                }
+//                            }else{
+//                                System.out.println("注册失败");
+//                            }
+//                        }
+//                    };
+//                    //params存放数据
+//                    RequestParams params = new RequestParams();
+//                    //添加手机号
+//                    params.add("userName",phone);
+//                    //对密码加密
+//                    password = ParseMD5.parseStrToMd5U32(password);
+//                    //添加加密后的密码
+//                    params.add("password",password);
+//                    //设置Handler 然后通过params传数据 向服务器发送数据进行注册
+//                    HttpFactory.getUserClient(mHandler).SignUp(params);
                 }
 
                     }else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
